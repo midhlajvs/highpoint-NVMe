@@ -43,9 +43,9 @@ case $distro in
          install_packages wget
          wget $kernel_source
       else
-        # wget $kernel_source
+        wget $kernel_source
         yellow "Extracting Kernel Source to /usr/src ... "
-        # tar -xlvf $(echo $kernel_source | rev | cut -d / -f1 |rev) -C /usr/src
+        tar -xlvf $(echo $kernel_source | rev | cut -d / -f1 |rev) -C /usr/src
       fi
 
       if cd "/usr/src/"$(echo $kernel_source| rev| cut -d / -f1 | cut -d "." -f3- | rev); then
