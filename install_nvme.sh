@@ -15,6 +15,8 @@ function yellow { echo -e "\e[33m$@\e[0m" ; }
 function get_distro (){
        if [ -r /etc/os-release ]; then
            distro="$(. /etc/os-release && echo "$ID")"
+       else
+           distro="$(cut -d " " -f1 /etc/redhat-release | tr [:upper:] [:lower:])"
        fi
 }
 
