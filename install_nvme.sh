@@ -61,6 +61,7 @@ case $distro in
           echo  "CONFIG_NET_SCH_FQ_CODEL=m" >> .config 
           yes ""| make oldconfig && make -j16 && make modules && make modules_install && make install
           dracut --kver $kernel_ver --add-drivers "mpt3sas" /boot/initramfs-$kernel_ver".img" -f
+          grub2-set-default 0 
       fi
    ;;
    *)
