@@ -56,6 +56,9 @@ case $distro in
           yellow "Updating configuration file .... "
           sed -i '/CONFIG_NVME_CORE/c\CONFIG_NVME_CORE=m' .config
           sed -i '/CONFIG_BLK_DEV_NVME/c\CONFIG_BLK_DEV_NVME=m' .config
+          echo "CONFIG_TCP_CONG_BBR=m" >> .config
+          echo "CONFIG_NET_SCH_FQ=m" >> .config
+          echo  "CONFIG_NET_SCH_FQ_CODEL=m" >> .config 
           yes ""| make oldconfig && make -j16 && make modules && make modules_install && make install
           dracut --kver $kernel_ver --add-drivers "mpt3sas" /boot/initramfs-$kernel_ver".img" -f
       fi
